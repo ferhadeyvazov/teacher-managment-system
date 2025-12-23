@@ -1,24 +1,24 @@
 package student.service;
 
 import common.MyServices;
-import common.Person;
-import student.entity.Student;
+
 import teacher.entity.Teacher;
 
 import java.util.Scanner;
 
+import static common.Db.students;
 import static common.Db.teachers;
 
 public class StudentService extends MyServices {
     public void showMenu() {
         System.out.println("Hansi emelliyyati etmek isteyirsiniz?");
         System.out.println("""
-                0. Şagirdləri ilk defe yarat\s
+                0. Şagirdləri ilk dəfə yarat\s
                 1. Yenisini yarat\s
                 2. Yenilemek(update)\s
                 3. Silmek\s
                 4. Axtarmaq\s
-                5. Hamisini gormek""");
+                5. Hamısını görmək""");
         byte action = new Scanner(System.in).nextByte();
         if (action == 0) {
             initialize();
@@ -42,7 +42,7 @@ public class StudentService extends MyServices {
     @Override
     public void initialize() {
         Scanner sc = new Scanner(System.in);
-        System.out.println("Nece nefer mellim daxil edirsen?");
+        System.out.println("Neçə nəfər Şagird daxil edirsen?");
         int count = sc.nextInt();
         sc.nextLine();
         teachers = new Teacher[count];

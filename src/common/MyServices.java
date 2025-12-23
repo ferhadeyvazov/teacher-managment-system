@@ -2,24 +2,20 @@ package common;
 
 import teacher.entity.Teacher;
 
-public class MyServices {
-    public void showMenu() {};
+public abstract class MyServices {
+    public abstract void showMenu();
 
-    public void initialize() {};
+    public abstract void initialize();
 
-    public Teacher requireAndCreate() {
-        return null;
-    }
+    public abstract Teacher requireAndCreate();
 
-    public Teacher[] createNew(Teacher[] teachers) {
-        return null;
-    }
+    public abstract Teacher[] createNew(Teacher[] teachers);
 
-    public void printAll(Teacher[] teachers) {};
+    public abstract void printAll(Teacher[] teachers);
 
-    public void update(Teacher[] teachers) {};
+    public abstract void update(Teacher[] teachers);
 
-    public void delete(Teacher[] teachers) {};
+    public abstract void delete(Teacher[] teachers);
 
-    public void find(Teacher[] teachers) {};
+    public abstract void find(Teacher[] teachers);
 }
