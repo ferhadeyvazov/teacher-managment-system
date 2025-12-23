@@ -1,6 +1,6 @@
 package common;
 
-import Teacher.entity.Teacher;
+import teacher.entity.Teacher;
 
 public class Db { // Database
 

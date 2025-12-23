@@ -1,4 +1,4 @@
-import Teacher.service.TeacherService;
+import teacher.service.TeacherService;
 import common.MyServices;
 
 //    1. Teacher.entity.Teacher class-i yarat
@@ -10,7 +10,7 @@ import common.MyServices;
 //        7. Uzunlugu count qeder olan massiv yaradin ve teacherleri hemin massive
 //        yarandiqca at
 class Main {
-private static final MyServices teacherService = new TeacherService();
+    private static final MyServices teacherService = new TeacherService();
 
     public static void main(String[] args) {
         while (true) {

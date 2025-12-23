@@ -1,27 +1,25 @@
 package common;
 
-import Teacher.entity.Teacher;
-
-import java.util.Scanner;
+import teacher.entity.Teacher;
 
 public class MyServices {
     public void showMenu() {};
 
-    public void initializeTeachers() {};
+    public void initialize() {};
 
-    public Teacher requireAndCreateTeacher() {
+    public Teacher requireAndCreate() {
         return null;
     }
 
-    public Teacher[] createNewTeacher(Teacher[] teachers) {
+    public Teacher[] createNew(Teacher[] teachers) {
         return null;
     }
 
     public void printAll(Teacher[] teachers) {};
 
-    public void updateTeacher(Teacher[] teachers) {};
+    public void update(Teacher[] teachers) {};
 
-    public void deleteTeacher(Teacher[] teachers) {};
+    public void delete(Teacher[] teachers) {};
 
-    public void findTeacher(Teacher[] teachers) {};
+    public void find(Teacher[] teachers) {};
 }
