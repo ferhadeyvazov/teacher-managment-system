@@ -2,42 +2,13 @@ package student.service;
 
 import common.MyServices;
 
-import teacher.entity.Teacher;
+import student.entity.Student;
 
 import java.util.Scanner;
 
 import static common.Db.students;
-import static common.Db.teachers;
 
 public class StudentService extends MyServices {
-    public void showMenu() {
-        System.out.println("Hansi emelliyyati etmek isteyirsiniz?");
-        System.out.println("""
-                0. Şagirdləri ilk dəfə yarat\s
-                1. Yenisini yarat\s
-                2. Yenilemek(update)\s
-                3. Silmek\s
-                4. Axtarmaq\s
-                5. Hamısını görmək""");
-        byte action = new Scanner(System.in).nextByte();
-        if (action == 0) {
-            initialize();
-        } else if (action == 1) {
-            teachers = createNew(teachers);
-        } else if (action == 2) {
-            printAll(teachers);
-            update(teachers);
-            printAll(teachers);
-        } else if (action == 3) {
-            delete(teachers);
-            printAll(teachers);
-        } else if (action == 4) {
-            find(teachers);
-        } else if (action == 5) {
-            if (teachers != null) printAll(teachers);
-            else System.out.println("Teacher yoxdur...");
-        }
-    }
 
     @Override
     public void initialize() {
@@ -45,55 +16,45 @@ public class StudentService extends MyServices {
         System.out.println("Neçə nəfər Şagird daxil edirsen?");
         int count = sc.nextInt();
         sc.nextLine();
-        teachers = new Teacher[count];
+        students = new Student[count];
         for (int i = 0; i < count; i++) {
-            teachers[i] = requireAndCreate();
+            students[i] = requireAndCreate();
         }
-        printAll(teachers);
+        printAll();
     }
 
     @Override
-    public Teacher requireAndCreate() {
-        Scanner sc = new Scanner(System.in);
-        Teacher teacher = new Teacher();
-        System.out.print("Mellimin adini daxil edin: ");
-        teacher.setFirstname(sc.nextLine());
-        System.out.print("Mellimin soyadini daxil edin: ");
-        teacher.setSurname(sc.nextLine());
-        System.out.print("Mellimin yasini daxil edin: ");
-        teacher.setAge(sc.nextByte());
-        sc.nextLine();
-        return teacher;
-    }
-
-    @Override
-    public Teacher[] createNew(Teacher[] teachers) {
+    public void createNew() {
         Scanner sc = new Scanner(System.in);
         System.out.println("Neçə nəfər müəllim yaratmaq istəyirsiz?");
         int newCount = sc.nextInt();
-        Teacher[] newTeachers = new Teacher[teachers.length + newCount];
-        for (int i = 0; i < teachers.length; i++) {
-            newTeachers[i] = teachers[i];
+        Student[] newStudents = new Student[students.length + newCount];
+        for (int i = 0; i < students.length; i++) {
+            newStudents[i] = students[i];
         }
-        for (int i = teachers.length; i < newTeachers.length; i++) {
-            newTeachers[i] = requireAndCreate();
+        for (int i = students.length; i < newStudents.length; i++) {
+            newStudents[i] = requireAndCreate();
         }
-        return newTeachers;
+
     }
 
     @Override
-    public void printAll(Teacher[] teachers) {
-        System.out.println("Qeydiyyatdan keçen mellimler: ");
-        for (Teacher teacher : teachers) {
-            System.out.println(teacher.toString());
+    public void printAll() {
+        if (students != null) {
+            System.out.println("Qeydiyyatdan keçen Şagirdlər: ");
+            for (Student student : students) {
+                System.out.println(student.toString());
+            }
+        } else {
+            System.out.println("Şagird yoxdur...");
         }
     }
 
     @Override
-    public void update(Teacher[] teachers) {
+    public void update() {
         Scanner sc = new Scanner(System.in);
         System.out.println("Necenci xanada duran müəllimi yeniləmək istəyirsiz?");
-        Teacher updatedIndex = teachers[sc.nextInt() - 1];
+        Student updatedIndex = students[sc.nextInt() - 1];
         sc.nextLine();
         System.out.println("Hansi xananı update etmek isteyirsiniz? name, surname age");
         String updatedName = sc.nextLine();
@@ -108,24 +69,38 @@ public class StudentService extends MyServices {
     }
 
     @Override
-    public void delete(Teacher[] teachers) {
+    public void delete() {
         Scanner sc = new Scanner(System.in);
         System.out.println("Necenci mellimi silmek isteyirsiz?");
-        teachers[sc.nextByte() - 1] = null;
+        students[sc.nextByte() - 1] = null;
     }
 
     @Override
-    public void find(Teacher[] teachers) {
+    public void find() {
         Scanner sc = new Scanner(System.in);
         System.out.println("Axtarmaq isdediyiniz müəllimin adını vəya soyadını daxil edin: ");
         String text = sc.nextLine();
-        for (Teacher teacher : teachers) {
+        for (Student student : students) {
             if (text == null) continue;
-            boolean equalFirstname = teacher.getFirstname().equalsIgnoreCase(text.trim());
-            boolean equalSurname = teacher.getSurname().equalsIgnoreCase(text.trim());
+            boolean equalFirstname = student.getFirstname().equalsIgnoreCase(text.trim());
+            boolean equalSurname = student.getSurname().equalsIgnoreCase(text.trim());
             if (equalFirstname || equalSurname) {
-                System.out.println(teacher.toString());
+                System.out.println(student.toString());
             }
         }
     }
+
+    private Student requireAndCreate() {
+        Scanner sc = new Scanner(System.in);
+        Student student = new Student();
+        System.out.print("Şagirdin adini daxil edin: ");
+        student.setFirstname(sc.nextLine());
+        System.out.print("Şagirdin soyadini daxil edin: ");
+        student.setSurname(sc.nextLine());
+        System.out.print("Şagirdin yaşını daxil edin: ");
+        student.setAge(sc.nextByte());
+        sc.nextLine();
+        return student;
+    }
+
 }
