@@ -1,5 +1,6 @@
 package common;
 
+@DatabaseTable(tableName = "persons", schema = "private")
 public class Person {
     private String firstname;
     private String surname;
