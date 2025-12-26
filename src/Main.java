@@ -1,3 +1,5 @@
+import common.Author;
+import common.Authors;
 import teacher.service.TeacherService;
 import common.MyServices;
 
@@ -9,6 +11,8 @@ import common.MyServices;
 //        6. Muteriden sorus nece nefer mellim daxil edeceyini sorus.
 //        7. Uzunlugu count qeder olan massiv yaradin ve teacherleri hemin massive
 //        yarandiqca at
+@Author(name="Farhad",date="26-12-2025")
+@Author(name="Nurana", date="27-12-2025")
 class Main {
     private static final MyServices teacherService = new TeacherService();
 
